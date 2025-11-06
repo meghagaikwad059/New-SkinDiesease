@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disease Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f7f7f7;
+    }
+
+    /* ✅ Navbar */
+    .navbar {
+      background-color: #030726;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      color: white;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+.nav-links a.active,
+.nav-links a:hover {
+  color: #f25f5c;
+}
+
+    /* ✅ Hamburger menu for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: white;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        right: 20px;
+        background-color: #030726;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ✅ Main content */
+    #result {
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+    }
+
+    h2, h3 {
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">SkinCare AI</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Skin.html">Skin Diseases</a></li>
+        <li><a href="Skin_care.html">Skin Care</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ✅ Main content -->
+  <div id="result">
+    <p>Loading...</p>
+  </div>
+
+  <!-- ✅ Script -->
+  <script>
+    // ✅ Toggle mobile menu
+    function toggleMenu() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('show');
+    }
+
+    // ✅ Highlight active nav link
+    const current = window.location.pathname.split("/").pop();
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.getAttribute('href') === current) {
+        link.classList.add('active');
+      }
+    });
+
+    // ✅ Load disease info
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    async function loadDiseaseInfo() {
+      const disease = getQueryParam('disease');
+      if (!disease) {
+        document.getElementById('result').innerHTML = `<p style="color:red;">No disease provided.</p>`;
+        return;
+      }
+
+      try {
+        const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(disease)}`);
+        const wikiData = await wikiRes.json();
+
+        const dummyRemedies = `
+          - Stay hydrated<br>
+          - Use prescribed creams<br>
+          - Avoid sun exposure<br>
+          - Consult a dermatologist
+        `;
+
+        document.getElementById('result').innerHTML = `
+          <h2>${wikiData.title || disease}</h2>
+          <p>${wikiData.extract || "No description found."}</p>
+          <h3>Home Remedies</h3>
+          <p>${dummyRemedies}</p>
+        `;
+      } catch (err) {
+        console.error(err);
+        document.getElementById('result').innerHTML = `<p style="color:red;">Error loading disease info.</p>`;
+      }
+    }
+
+    window.onload = loadDiseaseInfo;
+  </script>
+</body>
+</html>

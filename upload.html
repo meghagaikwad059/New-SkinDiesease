@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skin Disease Detection</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Skin Disease Detection</h1>
+
+    <!-- 🔹 Image Upload Section -->
+    <div class="upload-section">
+      <label for="imageInput" class="upload-label">Choose an image:</label>
+      <input type="file" id="imageInput" accept="image/*" />
+      <button id="analyzeBtn">Analyze Image</button>
+    </div>
+
+    <!-- 🔹 Image Preview -->
+    <div class="preview-section">
+      <img id="imagePreview" alt="Image Preview" style="display: none; max-width: 100%; height: auto;" />
+    </div>
+
+    <!-- 🔹 Result Section -->
+    <div id="result" class="result-section" style="display: none;">
+      <p><strong>Disease:</strong> <span id="disease"></span></p>
+      <h3>About the Disease</h3>
+      <p id="wikiInfo" style="font-style: italic; color: #333;"></p>
+
+      <!-- 🔹 More Info Button -->
+      <button id="moreInfoBtn" style="margin-top: 20px; display: none;">More Info & Remedies</button>
+    </div>
+
+    <!-- 🔹 Error Message -->
+    <div id="error" class="error-message" style="color: red; display: none;"></div>
+  </div>
+
+  <!-- 🔹 Script -->
+  <script>
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const resultDiv = document.getElementById('result');
+    const diseaseSpan = document.getElementById('disease');
+    const wikiInfo = document.getElementById('wikiInfo');
+    const errorDiv = document.getElementById('error');
+    const moreInfoBtn = document.getElementById('moreInfoBtn');
+
+    let predictedDisease = "";
+
+    analyzeBtn.onclick = async () => {
+      const file = imageInput.files[0];
+      if (!file) {
+        errorDiv.innerText = "Please upload an image first.";
+        errorDiv.style.display = "block";
+        return;
+      }
+
+      errorDiv.style.display = "none";
+      resultDiv.style.display = "none";
+      moreInfoBtn.style.display = "none";
+
+      // Preview image
+      const reader = new FileReader();
+      reader.onload = () => {
+        imagePreview.src = reader.result;
+        imagePreview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+
+      // Prepare form data
+      const formData = new FormData();
+      formData.append("image", file);
+
+      try {
+        const res = await fetch("http://localhost:5000/predict", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+
+        if (data.error) {
+          errorDiv.innerText = data.error;
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        predictedDisease = data.label;
+        diseaseSpan.innerText = data.label;
+        wikiInfo.innerText = data.info;
+        resultDiv.style.display = "block";
+        moreInfoBtn.style.display = "inline-block";
+
+      } catch (err) {
+        errorDiv.innerText = "Prediction failed. Please try again.";
+        errorDiv.style.display = "block";
+      }
+    };
+
+   moreInfoBtn.onclick = () => {
+  const encoded = encodeURIComponent(predictedDisease);
+  window.location.href = `http://localhost:5500/index1.html?disease=${encoded}`;
+};
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #030726;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: white;
+} 
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+/* .nav-links a.active,
+.nav-links a:hover {
+  color: #ffffff;
+} */
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+  background: #f9f9ff;
+  padding: 4rem 2rem;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2a2a2a;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #f25f5c, #ff7e66);
+  color: white;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(242, 95, 92, 0.3);
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #e04848, #ff644f);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+
+  .btn {
+    margin: 0 auto;
+  }
+}
+
+
+/* Button Styling */
+.btn {
+  background: linear-gradient(135deg, #f25f5c, #ff7e66);
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  font-size: 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(242, 95, 92, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #e04848, #ff644f);
+  transform: scale(1.05);
+}
+
+
+/* Info Section */
+.info-section {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #fff;
+}
+.info-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.info-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.card {
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+}
+.card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+/* Gallery Section */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
+  background: #fafafa;
+}
+
+.gallery img {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: translateY(-4px);
+}
+
+
+/* Footer */
+footer {
+  background-color: #030726;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+/* Navbar (reused) */
+.navbar {
+  background-color: #030726;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.nav-links a.active,
+.nav-links a:hover {
+  color: #f25f5c;
+}
+
+/* About Section */
+.about-section {
+  padding: 3rem 2rem;
+  background: #f9f9ff;
+}
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Highlight Section */
+.highlight-section {
+  padding: 3rem 2rem;
+  background-color: #fff;
+  text-align: center;
+}
+.highlight-section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.highlight-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.highlight-cards .card {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.card img {
+  width: 60px;
+  margin-bottom: 1rem;
+  border-radius: 60%;
+}
+.card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+  background-color: #030726;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+/* Skin Care Advice Section */
+.care-advice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #fefefe;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+}
+
+.advice-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.advice-content h2 {
+  font-size: 2rem;
+  color: #2a2a2a;
+  margin-bottom: 1rem;
+}
+
+.care-list {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.care-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.care-list li::before {
+  content: "🌿";
+  position: absolute;
+  left: 0;
+}
+
+.advice-image {
+  flex: 1;
+  text-align: center;
+  min-width: 280px;
+}
+
+.advice-image img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.advice-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .care-advice {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .advice-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .care-list {
+    font-size: 1rem;
+  }
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.upload-label {
+  font-weight: bold;
+}
+
+input[type="file"] {
+  padding: 8px;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #f25f5c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color:#ff3c7a;
+}
+
+.preview-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#imagePreview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+}
+
+.result-section {
+  margin-top: 30px;
+}
+
+.result-section h2,
+.result-section h3 {
+  color: #333;
+}
+
+.result-section p {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
